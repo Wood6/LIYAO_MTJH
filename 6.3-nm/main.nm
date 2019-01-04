@@ -1,0 +1,6 @@
+         U func
+00000000 B g_global
+         U g_pointer
+00000000 D g_test
+00000000 T main
+         U printf
