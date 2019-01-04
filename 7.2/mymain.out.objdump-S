@@ -1,0 +1,32 @@
+
+mymain.out:     file format elf32-i386
+
+
+Disassembly of section .plt:
+
+08048230 <puts@plt-0x10>:
+ 8048230:	ff 35 04 a0 04 08    	pushl  0x804a004
+ 8048236:	ff 25 08 a0 04 08    	jmp    *0x804a008
+ 804823c:	00 00                	add    %al,(%eax)
+	...
+
+08048240 <puts@plt>:
+ 8048240:	ff 25 0c a0 04 08    	jmp    *0x804a00c
+ 8048246:	68 00 00 00 00       	push   $0x0
+ 804824b:	e9 e0 ff ff ff       	jmp    8048230 <puts@plt-0x10>
+
+08048250 <exit@plt>:
+ 8048250:	ff 25 10 a0 04 08    	jmp    *0x804a010
+ 8048256:	68 08 00 00 00       	push   $0x8
+ 804825b:	e9 d0 ff ff ff       	jmp    8048230 <puts@plt-0x10>
+
+Disassembly of section .text:
+
+08048260 <mymain>:
+ 8048260:	55                   	push   %ebp
+ 8048261:	89 e5                	mov    %esp,%ebp
+ 8048263:	83 ec 18             	sub    $0x18,%esp
+ 8048266:	c7 04 24 7e 82 04 08 	movl   $0x804827e,(%esp)
+ 804826d:	e8 ce ff ff ff       	call   8048240 <puts@plt>
+ 8048272:	c7 04 24 00 00 00 00 	movl   $0x0,(%esp)
+ 8048279:	e8 d2 ff ff ff       	call   8048250 <exit@plt>
