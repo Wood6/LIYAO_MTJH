@@ -1,10 +1,12 @@
 // 内嵌汇编完成系统调用：实现printf() 和 exit的系统调用
 #include <stdio.h>
+#include <string.h>
 
 int main()
 {
     char* s = "liyao test!\n";
-    int l = 11;
+    int len = strlen(s);
+	
     printf("main begin\n");
 
     // 利用系统调用实现的printf功能
@@ -15,11 +17,9 @@ int main()
          "movl %1, %%edx\n"   // 指定输出字符串的长度
          "int $0x80     \n"   // 执行系统调用
          :   // 省略输出参数
-         : "r"(s), "r"(l)     // 把参数s和l放入寄存器
+         : "r"(s), "r"(len)     // 把参数s和l放入寄存器
          : "eax", "ebx", "ecx", "edx" // 保留寄存器
          );
-
-	sleep(10);
 	
     // 执行sys_exit系统调用
     asm volatile(
