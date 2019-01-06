@@ -1,0 +1,54 @@
+
+mymain.out:     file format elf32-i386
+
+
+Disassembly of section .text:
+
+08048074 <mymain>:
+ 8048074:	55                   	push   %ebp
+ 8048075:	89 e5                	mov    %esp,%ebp
+ 8048077:	83 ec 18             	sub    $0x18,%esp
+ 804807a:	c7 44 24 04 0c 00 00 	movl   $0xc,0x4(%esp)
+ 8048081:	00 
+ 8048082:	c7 04 24 d0 80 04 08 	movl   $0x80480d0,(%esp)
+ 8048089:	e8 0e 00 00 00       	call   804809c <print>
+ 804808e:	c7 04 24 00 00 00 00 	movl   $0x0,(%esp)
+ 8048095:	e8 23 00 00 00       	call   80480bd <myexit>
+ 804809a:	c9                   	leave  
+ 804809b:	c3                   	ret    
+
+0804809c <print>:
+ 804809c:	55                   	push   %ebp
+ 804809d:	89 e5                	mov    %esp,%ebp
+ 804809f:	57                   	push   %edi
+ 80480a0:	56                   	push   %esi
+ 80480a1:	53                   	push   %ebx
+ 80480a2:	8b 75 08             	mov    0x8(%ebp),%esi
+ 80480a5:	8b 7d 0c             	mov    0xc(%ebp),%edi
+ 80480a8:	b8 04 00 00 00       	mov    $0x4,%eax
+ 80480ad:	bb 01 00 00 00       	mov    $0x1,%ebx
+ 80480b2:	89 f1                	mov    %esi,%ecx
+ 80480b4:	89 fa                	mov    %edi,%edx
+ 80480b6:	cd 80                	int    $0x80
+ 80480b8:	5b                   	pop    %ebx
+ 80480b9:	5e                   	pop    %esi
+ 80480ba:	5f                   	pop    %edi
+ 80480bb:	5d                   	pop    %ebp
+ 80480bc:	c3                   	ret    
+
+080480bd <myexit>:
+ 80480bd:	55                   	push   %ebp
+ 80480be:	89 e5                	mov    %esp,%ebp
+ 80480c0:	53                   	push   %ebx
+ 80480c1:	8b 55 08             	mov    0x8(%ebp),%edx
+ 80480c4:	b8 01 00 00 00       	mov    $0x1,%eax
+ 80480c9:	89 d3                	mov    %edx,%ebx
+ 80480cb:	cd 80                	int    $0x80
+ 80480cd:	5b                   	pop    %ebx
+ 80480ce:	5d                   	pop    %ebp
+ 80480cf:	c3                   	ret    
+ 80480d0:	6c                   	insb   (%dx),%es:(%edi)
+ 80480d1:	69 79 61 6f 20 74 65 	imul   $0x6574206f,0x61(%ecx),%edi
+ 80480d8:	73 74                	jae    804814e <myexit+0x91>
+ 80480da:	21 0a                	and    %ecx,(%edx)
+	...
