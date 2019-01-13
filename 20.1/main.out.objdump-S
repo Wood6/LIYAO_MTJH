@@ -1,0 +1,623 @@
+
+main.out:     file format elf32-i386
+
+
+Disassembly of section .init:
+
+08048484 <_init>:
+ 8048484:	53                   	push   %ebx
+ 8048485:	83 ec 08             	sub    $0x8,%esp
+ 8048488:	e8 03 01 00 00       	call   8048590 <__x86.get_pc_thunk.bx>
+ 804848d:	81 c3 73 1b 00 00    	add    $0x1b73,%ebx
+ 8048493:	8b 83 fc ff ff ff    	mov    -0x4(%ebx),%eax
+ 8048499:	85 c0                	test   %eax,%eax
+ 804849b:	74 05                	je     80484a2 <_init+0x1e>
+ 804849d:	e8 8e 00 00 00       	call   8048530 <__gmon_start__@plt>
+ 80484a2:	83 c4 08             	add    $0x8,%esp
+ 80484a5:	5b                   	pop    %ebx
+ 80484a6:	c3                   	ret    
+
+Disassembly of section .plt:
+
+080484b0 <pthread_mutex_unlock@plt-0x10>:
+ 80484b0:	ff 35 04 a0 04 08    	pushl  0x804a004
+ 80484b6:	ff 25 08 a0 04 08    	jmp    *0x804a008
+ 80484bc:	00 00                	add    %al,(%eax)
+	...
+
+080484c0 <pthread_mutex_unlock@plt>:
+ 80484c0:	ff 25 0c a0 04 08    	jmp    *0x804a00c
+ 80484c6:	68 00 00 00 00       	push   $0x0
+ 80484cb:	e9 e0 ff ff ff       	jmp    80484b0 <_init+0x2c>
+
+080484d0 <free@plt>:
+ 80484d0:	ff 25 10 a0 04 08    	jmp    *0x804a010
+ 80484d6:	68 08 00 00 00       	push   $0x8
+ 80484db:	e9 d0 ff ff ff       	jmp    80484b0 <_init+0x2c>
+
+080484e0 <getchar@plt>:
+ 80484e0:	ff 25 14 a0 04 08    	jmp    *0x804a014
+ 80484e6:	68 10 00 00 00       	push   $0x10
+ 80484eb:	e9 c0 ff ff ff       	jmp    80484b0 <_init+0x2c>
+
+080484f0 <pthread_mutex_lock@plt>:
+ 80484f0:	ff 25 18 a0 04 08    	jmp    *0x804a018
+ 80484f6:	68 18 00 00 00       	push   $0x18
+ 80484fb:	e9 b0 ff ff ff       	jmp    80484b0 <_init+0x2c>
+
+08048500 <usleep@plt>:
+ 8048500:	ff 25 1c a0 04 08    	jmp    *0x804a01c
+ 8048506:	68 20 00 00 00       	push   $0x20
+ 804850b:	e9 a0 ff ff ff       	jmp    80484b0 <_init+0x2c>
+
+08048510 <malloc@plt>:
+ 8048510:	ff 25 20 a0 04 08    	jmp    *0x804a020
+ 8048516:	68 28 00 00 00       	push   $0x28
+ 804851b:	e9 90 ff ff ff       	jmp    80484b0 <_init+0x2c>
+
+08048520 <puts@plt>:
+ 8048520:	ff 25 24 a0 04 08    	jmp    *0x804a024
+ 8048526:	68 30 00 00 00       	push   $0x30
+ 804852b:	e9 80 ff ff ff       	jmp    80484b0 <_init+0x2c>
+
+08048530 <__gmon_start__@plt>:
+ 8048530:	ff 25 28 a0 04 08    	jmp    *0x804a028
+ 8048536:	68 38 00 00 00       	push   $0x38
+ 804853b:	e9 70 ff ff ff       	jmp    80484b0 <_init+0x2c>
+
+08048540 <__libc_start_main@plt>:
+ 8048540:	ff 25 2c a0 04 08    	jmp    *0x804a02c
+ 8048546:	68 40 00 00 00       	push   $0x40
+ 804854b:	e9 60 ff ff ff       	jmp    80484b0 <_init+0x2c>
+
+08048550 <pthread_create@plt>:
+ 8048550:	ff 25 30 a0 04 08    	jmp    *0x804a030
+ 8048556:	68 48 00 00 00       	push   $0x48
+ 804855b:	e9 50 ff ff ff       	jmp    80484b0 <_init+0x2c>
+
+Disassembly of section .text:
+
+08048560 <_start>:
+ 8048560:	31 ed                	xor    %ebp,%ebp
+ 8048562:	5e                   	pop    %esi
+ 8048563:	89 e1                	mov    %esp,%ecx
+ 8048565:	83 e4 f0             	and    $0xfffffff0,%esp
+ 8048568:	50                   	push   %eax
+ 8048569:	54                   	push   %esp
+ 804856a:	52                   	push   %edx
+ 804856b:	68 70 89 04 08       	push   $0x8048970
+ 8048570:	68 00 89 04 08       	push   $0x8048900
+ 8048575:	51                   	push   %ecx
+ 8048576:	56                   	push   %esi
+ 8048577:	68 71 86 04 08       	push   $0x8048671
+ 804857c:	e8 bf ff ff ff       	call   8048540 <__libc_start_main@plt>
+ 8048581:	f4                   	hlt    
+ 8048582:	66 90                	xchg   %ax,%ax
+ 8048584:	66 90                	xchg   %ax,%ax
+ 8048586:	66 90                	xchg   %ax,%ax
+ 8048588:	66 90                	xchg   %ax,%ax
+ 804858a:	66 90                	xchg   %ax,%ax
+ 804858c:	66 90                	xchg   %ax,%ax
+ 804858e:	66 90                	xchg   %ax,%ax
+
+08048590 <__x86.get_pc_thunk.bx>:
+ 8048590:	8b 1c 24             	mov    (%esp),%ebx
+ 8048593:	c3                   	ret    
+ 8048594:	66 90                	xchg   %ax,%ax
+ 8048596:	66 90                	xchg   %ax,%ax
+ 8048598:	66 90                	xchg   %ax,%ax
+ 804859a:	66 90                	xchg   %ax,%ax
+ 804859c:	66 90                	xchg   %ax,%ax
+ 804859e:	66 90                	xchg   %ax,%ax
+
+080485a0 <deregister_tm_clones>:
+ 80485a0:	b8 3f a0 04 08       	mov    $0x804a03f,%eax
+ 80485a5:	2d 3c a0 04 08       	sub    $0x804a03c,%eax
+ 80485aa:	83 f8 06             	cmp    $0x6,%eax
+ 80485ad:	77 01                	ja     80485b0 <deregister_tm_clones+0x10>
+ 80485af:	c3                   	ret    
+ 80485b0:	b8 00 00 00 00       	mov    $0x0,%eax
+ 80485b5:	85 c0                	test   %eax,%eax
+ 80485b7:	74 f6                	je     80485af <deregister_tm_clones+0xf>
+ 80485b9:	55                   	push   %ebp
+ 80485ba:	89 e5                	mov    %esp,%ebp
+ 80485bc:	83 ec 18             	sub    $0x18,%esp
+ 80485bf:	c7 04 24 3c a0 04 08 	movl   $0x804a03c,(%esp)
+ 80485c6:	ff d0                	call   *%eax
+ 80485c8:	c9                   	leave  
+ 80485c9:	c3                   	ret    
+ 80485ca:	8d b6 00 00 00 00    	lea    0x0(%esi),%esi
+
+080485d0 <register_tm_clones>:
+ 80485d0:	b8 3c a0 04 08       	mov    $0x804a03c,%eax
+ 80485d5:	2d 3c a0 04 08       	sub    $0x804a03c,%eax
+ 80485da:	c1 f8 02             	sar    $0x2,%eax
+ 80485dd:	89 c2                	mov    %eax,%edx
+ 80485df:	c1 ea 1f             	shr    $0x1f,%edx
+ 80485e2:	01 d0                	add    %edx,%eax
+ 80485e4:	d1 f8                	sar    %eax
+ 80485e6:	75 01                	jne    80485e9 <register_tm_clones+0x19>
+ 80485e8:	c3                   	ret    
+ 80485e9:	ba 00 00 00 00       	mov    $0x0,%edx
+ 80485ee:	85 d2                	test   %edx,%edx
+ 80485f0:	74 f6                	je     80485e8 <register_tm_clones+0x18>
+ 80485f2:	55                   	push   %ebp
+ 80485f3:	89 e5                	mov    %esp,%ebp
+ 80485f5:	83 ec 18             	sub    $0x18,%esp
+ 80485f8:	89 44 24 04          	mov    %eax,0x4(%esp)
+ 80485fc:	c7 04 24 3c a0 04 08 	movl   $0x804a03c,(%esp)
+ 8048603:	ff d2                	call   *%edx
+ 8048605:	c9                   	leave  
+ 8048606:	c3                   	ret    
+ 8048607:	89 f6                	mov    %esi,%esi
+ 8048609:	8d bc 27 00 00 00 00 	lea    0x0(%edi,%eiz,1),%edi
+
+08048610 <__do_global_dtors_aux>:
+ 8048610:	80 3d 40 a0 04 08 00 	cmpb   $0x0,0x804a040
+ 8048617:	75 13                	jne    804862c <__do_global_dtors_aux+0x1c>
+ 8048619:	55                   	push   %ebp
+ 804861a:	89 e5                	mov    %esp,%ebp
+ 804861c:	83 ec 08             	sub    $0x8,%esp
+ 804861f:	e8 7c ff ff ff       	call   80485a0 <deregister_tm_clones>
+ 8048624:	c6 05 40 a0 04 08 01 	movb   $0x1,0x804a040
+ 804862b:	c9                   	leave  
+ 804862c:	f3 c3                	repz ret 
+ 804862e:	66 90                	xchg   %ax,%ax
+
+08048630 <frame_dummy>:
+ 8048630:	a1 08 9f 04 08       	mov    0x8049f08,%eax
+ 8048635:	85 c0                	test   %eax,%eax
+ 8048637:	74 1f                	je     8048658 <frame_dummy+0x28>
+ 8048639:	b8 00 00 00 00       	mov    $0x0,%eax
+ 804863e:	85 c0                	test   %eax,%eax
+ 8048640:	74 16                	je     8048658 <frame_dummy+0x28>
+ 8048642:	55                   	push   %ebp
+ 8048643:	89 e5                	mov    %esp,%ebp
+ 8048645:	83 ec 18             	sub    $0x18,%esp
+ 8048648:	c7 04 24 08 9f 04 08 	movl   $0x8049f08,(%esp)
+ 804864f:	ff d0                	call   *%eax
+ 8048651:	c9                   	leave  
+ 8048652:	e9 79 ff ff ff       	jmp    80485d0 <register_tm_clones>
+ 8048657:	90                   	nop
+ 8048658:	e9 73 ff ff ff       	jmp    80485d0 <register_tm_clones>
+
+0804865d <callback_1>:
+// 定时器程序示例
+#include <stdio.h>
+#include "timer.h"
+
+void callback_1(Timer* t, void* data)
+{
+ 804865d:	55                   	push   %ebp
+ 804865e:	89 e5                	mov    %esp,%ebp
+ 8048660:	83 ec 18             	sub    $0x18,%esp
+    printf("I'm callback for t1.\n");
+ 8048663:	c7 04 24 90 89 04 08 	movl   $0x8048990,(%esp)
+ 804866a:	e8 b1 fe ff ff       	call   8048520 <puts@plt>
+}
+ 804866f:	c9                   	leave  
+ 8048670:	c3                   	ret    
+
+08048671 <main>:
+
+int main()
+{
+ 8048671:	55                   	push   %ebp
+ 8048672:	89 e5                	mov    %esp,%ebp
+ 8048674:	83 e4 f0             	and    $0xfffffff0,%esp
+ 8048677:	83 ec 20             	sub    $0x20,%esp
+    Timer* t1 = NULL;
+ 804867a:	c7 44 24 1c 00 00 00 	movl   $0x0,0x1c(%esp)
+ 8048681:	00 
+    
+    TimerInitialize();            // 模块初始化
+ 8048682:	e8 21 01 00 00       	call   80487a8 <TimerInitialize>
+    
+    t1 = CreateTimer(1000, callback_1, NULL);   // 创建一个定时器
+ 8048687:	c7 44 24 08 00 00 00 	movl   $0x0,0x8(%esp)
+ 804868e:	00 
+ 804868f:	c7 44 24 04 5d 86 04 	movl   $0x804865d,0x4(%esp)
+ 8048696:	08 
+ 8048697:	c7 04 24 e8 03 00 00 	movl   $0x3e8,(%esp)
+ 804869e:	e8 50 01 00 00       	call   80487f3 <CreateTimer>
+ 80486a3:	89 44 24 1c          	mov    %eax,0x1c(%esp)
+    
+    getchar();
+ 80486a7:	e8 34 fe ff ff       	call   80484e0 <getchar@plt>
+    
+    DestroyTimer(t1);             // 模块销毁
+ 80486ac:	8b 44 24 1c          	mov    0x1c(%esp),%eax
+ 80486b0:	89 04 24             	mov    %eax,(%esp)
+ 80486b3:	e8 f5 01 00 00       	call   80488ad <DestroyTimer>
+     
+    TimerFinalize();              // 模块终止
+ 80486b8:	e8 27 01 00 00       	call   80487e4 <TimerFinalize>
+    
+    return 0;
+ 80486bd:	b8 00 00 00 00       	mov    $0x0,%eax
+ 80486c2:	c9                   	leave  
+ 80486c3:	c3                   	ret    
+
+080486c4 <Runtime>:
+static volatile int g_run;               // volatile 这里就是多线程标记变量的用法
+static pthread_mutex_t mutex;            // 锁，多线程中常用
+
+// 单独的线程执行，相当于时针源，采用的软件定时
+static void* Runtime(void* args)
+{
+ 80486c4:	55                   	push   %ebp
+ 80486c5:	89 e5                	mov    %esp,%ebp
+ 80486c7:	83 ec 28             	sub    $0x28,%esp
+    int i = 0;
+ 80486ca:	c7 45 f0 00 00 00 00 	movl   $0x0,-0x10(%ebp)
+    
+    while( g_run )
+ 80486d1:	e9 9e 00 00 00       	jmp    8048774 <Runtime+0xb0>
+    {     
+        pthread_mutex_lock(&mutex); 
+ 80486d6:	c7 04 24 e4 a0 04 08 	movl   $0x804a0e4,(%esp)
+ 80486dd:	e8 0e fe ff ff       	call   80484f0 <pthread_mutex_lock@plt>
+        
+		// 遍历每个定时器模块
+        for(i=0; (i<MAX) && g_run; i++)
+ 80486e2:	c7 45 f0 00 00 00 00 	movl   $0x0,-0x10(%ebp)
+ 80486e9:	eb 62                	jmp    804874d <Runtime+0x89>
+        {
+			// 将遍历到的定时器模块取出来，用来更新当前时间，时间到执行回调函数
+            struct STimer* st = g_timers[i];
+ 80486eb:	8b 45 f0             	mov    -0x10(%ebp),%eax
+ 80486ee:	8b 04 85 60 a0 04 08 	mov    0x804a060(,%eax,4),%eax
+ 80486f5:	89 45 f4             	mov    %eax,-0xc(%ebp)
+            
+            if( (st != NULL) && (st->callback != NULL) )
+ 80486f8:	83 7d f4 00          	cmpl   $0x0,-0xc(%ebp)
+ 80486fc:	74 4b                	je     8048749 <Runtime+0x85>
+ 80486fe:	8b 45 f4             	mov    -0xc(%ebp),%eax
+ 8048701:	8b 40 0c             	mov    0xc(%eax),%eax
+ 8048704:	85 c0                	test   %eax,%eax
+ 8048706:	74 41                	je     8048749 <Runtime+0x85>
+            {
+                st->current += GAP;             // 当前时间加上时间流逝量，10毫秒
+ 8048708:	8b 45 f4             	mov    -0xc(%ebp),%eax
+ 804870b:	8b 40 08             	mov    0x8(%eax),%eax
+ 804870e:	8d 50 0a             	lea    0xa(%eax),%edx
+ 8048711:	8b 45 f4             	mov    -0xc(%ebp),%eax
+ 8048714:	89 50 08             	mov    %edx,0x8(%eax)
+            
+				// 当前时间到达了定时器间隔时间
+                if( st->current >= st->interval ) 
+ 8048717:	8b 45 f4             	mov    -0xc(%ebp),%eax
+ 804871a:	8b 50 08             	mov    0x8(%eax),%edx
+ 804871d:	8b 45 f4             	mov    -0xc(%ebp),%eax
+ 8048720:	8b 40 04             	mov    0x4(%eax),%eax
+ 8048723:	39 c2                	cmp    %eax,%edx
+ 8048725:	7c 22                	jl     8048749 <Runtime+0x85>
+                {
+					// 执行回调函数
+                    st->callback(st, st->data);
+ 8048727:	8b 45 f4             	mov    -0xc(%ebp),%eax
+ 804872a:	8b 40 0c             	mov    0xc(%eax),%eax
+ 804872d:	8b 55 f4             	mov    -0xc(%ebp),%edx
+ 8048730:	8b 52 10             	mov    0x10(%edx),%edx
+ 8048733:	89 54 24 04          	mov    %edx,0x4(%esp)
+ 8048737:	8b 55 f4             	mov    -0xc(%ebp),%edx
+ 804873a:	89 14 24             	mov    %edx,(%esp)
+ 804873d:	ff d0                	call   *%eax
+					// 再又将当前时间的清0
+                    st->current = 0;
+ 804873f:	8b 45 f4             	mov    -0xc(%ebp),%eax
+ 8048742:	c7 40 08 00 00 00 00 	movl   $0x0,0x8(%eax)
+    while( g_run )
+    {     
+        pthread_mutex_lock(&mutex); 
+        
+		// 遍历每个定时器模块
+        for(i=0; (i<MAX) && g_run; i++)
+ 8048749:	83 45 f0 01          	addl   $0x1,-0x10(%ebp)
+ 804874d:	83 7d f0 1f          	cmpl   $0x1f,-0x10(%ebp)
+ 8048751:	7f 09                	jg     804875c <Runtime+0x98>
+ 8048753:	a1 e0 a0 04 08       	mov    0x804a0e0,%eax
+ 8048758:	85 c0                	test   %eax,%eax
+ 804875a:	75 8f                	jne    80486eb <Runtime+0x27>
+                    st->current = 0;
+                }
+            }
+        }
+        
+        pthread_mutex_unlock(&mutex);  
+ 804875c:	c7 04 24 e4 a0 04 08 	movl   $0x804a0e4,(%esp)
+ 8048763:	e8 58 fd ff ff       	call   80484c0 <pthread_mutex_unlock@plt>
+        
+        usleep(GAP * 1000);         // 这里采用的是软件定时，休眠10毫秒
+ 8048768:	c7 04 24 10 27 00 00 	movl   $0x2710,(%esp)
+ 804876f:	e8 8c fd ff ff       	call   8048500 <usleep@plt>
+// 单独的线程执行，相当于时针源，采用的软件定时
+static void* Runtime(void* args)
+{
+    int i = 0;
+    
+    while( g_run )
+ 8048774:	a1 e0 a0 04 08       	mov    0x804a0e0,%eax
+ 8048779:	85 c0                	test   %eax,%eax
+ 804877b:	0f 85 55 ff ff ff    	jne    80486d6 <Runtime+0x12>
+        
+        usleep(GAP * 1000);         // 这里采用的是软件定时，休眠10毫秒
+    }
+    
+	// 没有定时器执行了，释放所有定时器
+    for(i=0; i<MAX; i++)
+ 8048781:	c7 45 f0 00 00 00 00 	movl   $0x0,-0x10(%ebp)
+ 8048788:	eb 16                	jmp    80487a0 <Runtime+0xdc>
+    {
+        free(g_timers[i]);
+ 804878a:	8b 45 f0             	mov    -0x10(%ebp),%eax
+ 804878d:	8b 04 85 60 a0 04 08 	mov    0x804a060(,%eax,4),%eax
+ 8048794:	89 04 24             	mov    %eax,(%esp)
+ 8048797:	e8 34 fd ff ff       	call   80484d0 <free@plt>
+        
+        usleep(GAP * 1000);         // 这里采用的是软件定时，休眠10毫秒
+    }
+    
+	// 没有定时器执行了，释放所有定时器
+    for(i=0; i<MAX; i++)
+ 804879c:	83 45 f0 01          	addl   $0x1,-0x10(%ebp)
+ 80487a0:	83 7d f0 1f          	cmpl   $0x1f,-0x10(%ebp)
+ 80487a4:	7e e4                	jle    804878a <Runtime+0xc6>
+    {
+        free(g_timers[i]);
+    }
+}
+ 80487a6:	c9                   	leave  
+ 80487a7:	c3                   	ret    
+
+080487a8 <TimerInitialize>:
+
+
+void TimerInitialize()
+{
+ 80487a8:	55                   	push   %ebp
+ 80487a9:	89 e5                	mov    %esp,%ebp
+ 80487ab:	83 ec 28             	sub    $0x28,%esp
+	pthread_t tid = 0;
+ 80487ae:	c7 45 f4 00 00 00 00 	movl   $0x0,-0xc(%ebp)
+	
+	g_run = 1;
+ 80487b5:	c7 05 e0 a0 04 08 01 	movl   $0x1,0x804a0e0
+ 80487bc:	00 00 00 
+
+	pthread_create(&tid, NULL, Runtime, NULL);
+ 80487bf:	c7 44 24 0c 00 00 00 	movl   $0x0,0xc(%esp)
+ 80487c6:	00 
+ 80487c7:	c7 44 24 08 c4 86 04 	movl   $0x80486c4,0x8(%esp)
+ 80487ce:	08 
+ 80487cf:	c7 44 24 04 00 00 00 	movl   $0x0,0x4(%esp)
+ 80487d6:	00 
+ 80487d7:	8d 45 f4             	lea    -0xc(%ebp),%eax
+ 80487da:	89 04 24             	mov    %eax,(%esp)
+ 80487dd:	e8 6e fd ff ff       	call   8048550 <pthread_create@plt>
+}
+ 80487e2:	c9                   	leave  
+ 80487e3:	c3                   	ret    
+
+080487e4 <TimerFinalize>:
+
+void TimerFinalize()
+{
+ 80487e4:	55                   	push   %ebp
+ 80487e5:	89 e5                	mov    %esp,%ebp
+    g_run = 0;
+ 80487e7:	c7 05 e0 a0 04 08 00 	movl   $0x0,0x804a0e0
+ 80487ee:	00 00 00 
+}
+ 80487f1:	5d                   	pop    %ebp
+ 80487f2:	c3                   	ret    
+
+080487f3 <CreateTimer>:
+
+Timer* CreateTimer(int interval, TimerCallback* callback, void* data)
+{
+ 80487f3:	55                   	push   %ebp
+ 80487f4:	89 e5                	mov    %esp,%ebp
+ 80487f6:	83 ec 28             	sub    $0x28,%esp
+    int id = 0;
+ 80487f9:	c7 45 f0 00 00 00 00 	movl   $0x0,-0x10(%ebp)
+	// 申请堆空间用来做定时器模块
+    struct STimer* ret = (struct STimer*)malloc(sizeof(struct STimer));
+ 8048800:	c7 04 24 14 00 00 00 	movl   $0x14,(%esp)
+ 8048807:	e8 04 fd ff ff       	call   8048510 <malloc@plt>
+ 804880c:	89 45 f4             	mov    %eax,-0xc(%ebp)
+    
+    if( ret != NULL )
+ 804880f:	83 7d f4 00          	cmpl   $0x0,-0xc(%ebp)
+ 8048813:	0f 84 8f 00 00 00    	je     80488a8 <CreateTimer+0xb5>
+    { 
+        pthread_mutex_lock(&mutex);   
+ 8048819:	c7 04 24 e4 a0 04 08 	movl   $0x804a0e4,(%esp)
+ 8048820:	e8 cb fc ff ff       	call   80484f0 <pthread_mutex_lock@plt>
+        
+		// 遍历定时器模块数组
+        for(id=0; id<MAX; id++)
+ 8048825:	c7 45 f0 00 00 00 00 	movl   $0x0,-0x10(%ebp)
+ 804882c:	eb 21                	jmp    804884f <CreateTimer+0x5c>
+        {
+			// 哪个位置是空的
+            if( g_timers[id] == NULL )
+ 804882e:	8b 45 f0             	mov    -0x10(%ebp),%eax
+ 8048831:	8b 04 85 60 a0 04 08 	mov    0x804a060(,%eax,4),%eax
+ 8048838:	85 c0                	test   %eax,%eax
+ 804883a:	75 0f                	jne    804884b <CreateTimer+0x58>
+            {
+				// 将这个定时器加到这个数组中
+                g_timers[id] = ret;
+ 804883c:	8b 45 f0             	mov    -0x10(%ebp),%eax
+ 804883f:	8b 55 f4             	mov    -0xc(%ebp),%edx
+ 8048842:	89 14 85 60 a0 04 08 	mov    %edx,0x804a060(,%eax,4)
+                break;
+ 8048849:	eb 0a                	jmp    8048855 <CreateTimer+0x62>
+    if( ret != NULL )
+    { 
+        pthread_mutex_lock(&mutex);   
+        
+		// 遍历定时器模块数组
+        for(id=0; id<MAX; id++)
+ 804884b:	83 45 f0 01          	addl   $0x1,-0x10(%ebp)
+ 804884f:	83 7d f0 1f          	cmpl   $0x1f,-0x10(%ebp)
+ 8048853:	7e d9                	jle    804882e <CreateTimer+0x3b>
+                g_timers[id] = ret;
+                break;
+            }
+        }
+        
+        pthread_mutex_unlock(&mutex);
+ 8048855:	c7 04 24 e4 a0 04 08 	movl   $0x804a0e4,(%esp)
+ 804885c:	e8 5f fc ff ff       	call   80484c0 <pthread_mutex_unlock@plt>
+        
+		// 更新到数组中
+        if( id < MAX )
+ 8048861:	83 7d f0 1f          	cmpl   $0x1f,-0x10(%ebp)
+ 8048865:	7f 2f                	jg     8048896 <CreateTimer+0xa3>
+        {	
+			// 定时器id、间隔时间、当前时间置0、绑定回调函数、参数
+            ret->id = id;
+ 8048867:	8b 45 f4             	mov    -0xc(%ebp),%eax
+ 804886a:	8b 55 f0             	mov    -0x10(%ebp),%edx
+ 804886d:	89 10                	mov    %edx,(%eax)
+            ret->interval = interval;
+ 804886f:	8b 45 f4             	mov    -0xc(%ebp),%eax
+ 8048872:	8b 55 08             	mov    0x8(%ebp),%edx
+ 8048875:	89 50 04             	mov    %edx,0x4(%eax)
+            ret->current = 0;
+ 8048878:	8b 45 f4             	mov    -0xc(%ebp),%eax
+ 804887b:	c7 40 08 00 00 00 00 	movl   $0x0,0x8(%eax)
+            ret->callback = callback;
+ 8048882:	8b 45 f4             	mov    -0xc(%ebp),%eax
+ 8048885:	8b 55 0c             	mov    0xc(%ebp),%edx
+ 8048888:	89 50 0c             	mov    %edx,0xc(%eax)
+            ret->data = data;
+ 804888b:	8b 45 f4             	mov    -0xc(%ebp),%eax
+ 804888e:	8b 55 10             	mov    0x10(%ebp),%edx
+ 8048891:	89 50 10             	mov    %edx,0x10(%eax)
+ 8048894:	eb 12                	jmp    80488a8 <CreateTimer+0xb5>
+        }
+        else    // 定时器以达到最大，释放申请的堆空间
+        {
+            free(ret);
+ 8048896:	8b 45 f4             	mov    -0xc(%ebp),%eax
+ 8048899:	89 04 24             	mov    %eax,(%esp)
+ 804889c:	e8 2f fc ff ff       	call   80484d0 <free@plt>
+            ret = NULL;
+ 80488a1:	c7 45 f4 00 00 00 00 	movl   $0x0,-0xc(%ebp)
+        }
+    }
+    
+    return ret;
+ 80488a8:	8b 45 f4             	mov    -0xc(%ebp),%eax
+}
+ 80488ab:	c9                   	leave  
+ 80488ac:	c3                   	ret    
+
+080488ad <DestroyTimer>:
+
+void DestroyTimer(Timer* timer)
+{
+ 80488ad:	55                   	push   %ebp
+ 80488ae:	89 e5                	mov    %esp,%ebp
+ 80488b0:	83 ec 28             	sub    $0x28,%esp
+    if( timer != NULL )
+ 80488b3:	83 7d 08 00          	cmpl   $0x0,0x8(%ebp)
+ 80488b7:	74 39                	je     80488f2 <DestroyTimer+0x45>
+    {
+        struct STimer* st = (struct STimer*)timer;
+ 80488b9:	8b 45 08             	mov    0x8(%ebp),%eax
+ 80488bc:	89 45 f4             	mov    %eax,-0xc(%ebp)
+        
+		pthread_mutex_lock(&mutex);   
+ 80488bf:	c7 04 24 e4 a0 04 08 	movl   $0x804a0e4,(%esp)
+ 80488c6:	e8 25 fc ff ff       	call   80484f0 <pthread_mutex_lock@plt>
+	
+		g_timers[st->id] = NULL;
+ 80488cb:	8b 45 f4             	mov    -0xc(%ebp),%eax
+ 80488ce:	8b 00                	mov    (%eax),%eax
+ 80488d0:	c7 04 85 60 a0 04 08 	movl   $0x0,0x804a060(,%eax,4)
+ 80488d7:	00 00 00 00 
+		
+		pthread_mutex_unlock(&mutex);   
+ 80488db:	c7 04 24 e4 a0 04 08 	movl   $0x804a0e4,(%esp)
+ 80488e2:	e8 d9 fb ff ff       	call   80484c0 <pthread_mutex_unlock@plt>
+		
+		free(st);
+ 80488e7:	8b 45 f4             	mov    -0xc(%ebp),%eax
+ 80488ea:	89 04 24             	mov    %eax,(%esp)
+ 80488ed:	e8 de fb ff ff       	call   80484d0 <free@plt>
+    }
+}
+ 80488f2:	c9                   	leave  
+ 80488f3:	c3                   	ret    
+ 80488f4:	66 90                	xchg   %ax,%ax
+ 80488f6:	66 90                	xchg   %ax,%ax
+ 80488f8:	66 90                	xchg   %ax,%ax
+ 80488fa:	66 90                	xchg   %ax,%ax
+ 80488fc:	66 90                	xchg   %ax,%ax
+ 80488fe:	66 90                	xchg   %ax,%ax
+
+08048900 <__libc_csu_init>:
+ 8048900:	55                   	push   %ebp
+ 8048901:	57                   	push   %edi
+ 8048902:	31 ff                	xor    %edi,%edi
+ 8048904:	56                   	push   %esi
+ 8048905:	53                   	push   %ebx
+ 8048906:	e8 85 fc ff ff       	call   8048590 <__x86.get_pc_thunk.bx>
+ 804890b:	81 c3 f5 16 00 00    	add    $0x16f5,%ebx
+ 8048911:	83 ec 1c             	sub    $0x1c,%esp
+ 8048914:	8b 6c 24 30          	mov    0x30(%esp),%ebp
+ 8048918:	8d b3 04 ff ff ff    	lea    -0xfc(%ebx),%esi
+ 804891e:	e8 61 fb ff ff       	call   8048484 <_init>
+ 8048923:	8d 83 00 ff ff ff    	lea    -0x100(%ebx),%eax
+ 8048929:	29 c6                	sub    %eax,%esi
+ 804892b:	c1 fe 02             	sar    $0x2,%esi
+ 804892e:	85 f6                	test   %esi,%esi
+ 8048930:	74 27                	je     8048959 <__libc_csu_init+0x59>
+ 8048932:	8d b6 00 00 00 00    	lea    0x0(%esi),%esi
+ 8048938:	8b 44 24 38          	mov    0x38(%esp),%eax
+ 804893c:	89 2c 24             	mov    %ebp,(%esp)
+ 804893f:	89 44 24 08          	mov    %eax,0x8(%esp)
+ 8048943:	8b 44 24 34          	mov    0x34(%esp),%eax
+ 8048947:	89 44 24 04          	mov    %eax,0x4(%esp)
+ 804894b:	ff 94 bb 00 ff ff ff 	call   *-0x100(%ebx,%edi,4)
+ 8048952:	83 c7 01             	add    $0x1,%edi
+ 8048955:	39 f7                	cmp    %esi,%edi
+ 8048957:	75 df                	jne    8048938 <__libc_csu_init+0x38>
+ 8048959:	83 c4 1c             	add    $0x1c,%esp
+ 804895c:	5b                   	pop    %ebx
+ 804895d:	5e                   	pop    %esi
+ 804895e:	5f                   	pop    %edi
+ 804895f:	5d                   	pop    %ebp
+ 8048960:	c3                   	ret    
+ 8048961:	eb 0d                	jmp    8048970 <__libc_csu_fini>
+ 8048963:	90                   	nop
+ 8048964:	90                   	nop
+ 8048965:	90                   	nop
+ 8048966:	90                   	nop
+ 8048967:	90                   	nop
+ 8048968:	90                   	nop
+ 8048969:	90                   	nop
+ 804896a:	90                   	nop
+ 804896b:	90                   	nop
+ 804896c:	90                   	nop
+ 804896d:	90                   	nop
+ 804896e:	90                   	nop
+ 804896f:	90                   	nop
+
+08048970 <__libc_csu_fini>:
+ 8048970:	f3 c3                	repz ret 
+
+Disassembly of section .fini:
+
+08048974 <_fini>:
+ 8048974:	53                   	push   %ebx
+ 8048975:	83 ec 08             	sub    $0x8,%esp
+ 8048978:	e8 13 fc ff ff       	call   8048590 <__x86.get_pc_thunk.bx>
+ 804897d:	81 c3 83 16 00 00    	add    $0x1683,%ebx
+ 8048983:	83 c4 08             	add    $0x8,%esp
+ 8048986:	5b                   	pop    %ebx
+ 8048987:	c3                   	ret    
