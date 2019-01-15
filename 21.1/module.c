@@ -49,7 +49,6 @@ static void console_print (const char* _format, ...)
     va_end (arglist);
 }
 
-
 error_t module_register (const char _name [], module_t _module, 
     init_level_t _level, module_callback_t _callback)
 {
@@ -78,33 +77,27 @@ error_t module_register (const char _name [], module_t _module,
     return 0;
 }
 
-static bool init_for_each (dll_t *_p_dll, dll_node_t *_p_node, void *_p_arg)
+static bool notify_for_each (dll_t *_p_dll, dll_node_t *_p_node, void *_p_arg)
 {
     module_init_t *p_module = (module_init_t *)_p_node;
-    error_t result = p_module->callback_ (STATE_INITIALIZING);
-    
-    UNUSED (_p_dll);
-    UNUSED (_p_arg);
-    
-    if (0 != result) {
-        console_print ("Error: can't initialize module %s (%s))", 
-            p_module->p_name_, errstr (result));
-        return false;
-    }
-    return true;
-}
+    error_t result = p_module->callback_ (system_state());
 
-static bool up_for_each (dll_t *_p_dll, dll_node_t *_p_node, void *_p_arg)
-{
-    module_init_t *p_module = (module_init_t *)_p_node;
-    error_t result = p_module->callback_ (STATE_UP);
-    
+	// 系统状态的枚举边了，这里也会变，这样耦合性又不好！！！
+	// 但根据这个枚举的实际情况，是表示系统状态，系统状态在设计之初一般就确定了，后面几乎不会再动
+	// 所以这里这样有耦合又是可以的
+	const char* state_str[] = {
+		"STATE_INITIALIZING",
+    	"STATE_UP",
+    	"STATE_DOWN",
+    	"STATE_DESTROYING"
+	};
+	
     UNUSED (_p_dll);
     UNUSED (_p_arg);
-    
+
     if (0 != result) {
-         console_print ("Error: can't start up module %s (%s))", 
-            p_module->p_name_, errstr (result));
+        console_print ("Error: System State [%s] - (%s))", 
+            state_str[system_state()], p_module->p_name_, errstr (result));
         return false;
     }
     return true;
@@ -116,7 +109,7 @@ error_t system_up ()
 
     g_state = STATE_INITIALIZING;
     for (level = LEVEL_FIRST; level <= LEVEL_LAST; ++ level) {
-        if (0 != dll_traverse (&g_levels [level], init_for_each, 
+        if (0 != dll_traverse (&g_levels [level], notify_for_each, 
             (void *)&level)) {
             return ERROR_T (ERROR_MODULE_INIT_FAILURE);
         }
@@ -124,7 +117,7 @@ error_t system_up ()
     
     g_state = STATE_UP;
     for (level = LEVEL_FIRST; level <= LEVEL_LAST; ++ level) {
-        if (0 != dll_traverse (&g_levels [level], up_for_each, 
+        if (0 != dll_traverse (&g_levels [level], notify_for_each, 
             (void *)&level)) {
             return ERROR_T (ERROR_MODULE_UP_FAILURE);
         }
@@ -133,53 +126,21 @@ error_t system_up ()
     return 0;
 }
 
-static bool down_for_each (dll_t *_p_dll, dll_node_t *_p_node, void *_p_arg)
-{
-    module_init_t *p_module = (module_init_t *)_p_node;
-    error_t result = p_module->callback_ (STATE_DOWN);
-
-    UNUSED (_p_dll);
-    UNUSED (_p_arg);
-    
-    if (0 != result) {
-         console_print ("Error: can't shut down module \"%s\" (%s)", 
-            p_module->p_name_, errstr (result));
-        // !!! don't return false
-    }
-    return true;
-}
-
-static bool destroy_for_each (dll_t *_p_dll, dll_node_t *_p_node, void *_p_arg)
-{
-    module_init_t *p_module = (module_init_t *)_p_node;
-    error_t result = p_module->callback_ (STATE_DESTROYING);
-    
-    UNUSED (_p_dll);
-    UNUSED (_p_arg);
-    
-    if (0 != result) {
-         console_print ("Error: can't destroy module \"%s\" (%s)", 
-            p_module->p_name_, errstr (result));
-        // !!! don't return false
-    }
-    return true;
-}
-
 void system_down ()
 {
     init_level_t level;
     
     g_state = STATE_DOWN;
     for (level = LEVEL_LAST; level > LEVEL_FIRST; -- level) {
-        (void) dll_traverse_reversely (&g_levels [level], down_for_each, null);
+        (void) dll_traverse_reversely (&g_levels [level], notify_for_each, null);
     }
-    (void) dll_traverse_reversely (&g_levels [LEVEL_FIRST], down_for_each, null);
+    (void) dll_traverse_reversely (&g_levels [LEVEL_FIRST], notify_for_each, null);
     
     g_state = STATE_DESTROYING;
     for (level = LEVEL_LAST; level > LEVEL_FIRST; -- level) {
-        (void) dll_traverse_reversely (&g_levels [level], destroy_for_each, null);
+        (void) dll_traverse_reversely (&g_levels [level], notify_for_each, null);
     }
-    (void) dll_traverse_reversely (&g_levels [LEVEL_FIRST], destroy_for_each, null);
+    (void) dll_traverse_reversely (&g_levels [LEVEL_FIRST], notify_for_each, null);
 }
 
 system_state_t system_state ()
